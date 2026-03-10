@@ -37,7 +37,7 @@ Each image is rotated by 30° increments
 Total rotations per image: 12
 
 A VAE is trained to encode images into a latent space:
-z=f(x)
+$z = f(x)$
 The objective is to obtain a structured latent space where rotations correspond to smooth transformations.
 Outputs:
 
@@ -55,11 +55,9 @@ In this task, the goal is to learn a model that maps one latent vector to its ro
 
 Using the latent vectors from Task 1:
 
-z(t+1)=T(z(t))
+$z_{t+1} = T(z_t)$
 
-where 
-𝑇
-T is a neural network representing a rotation transformation.
+where $T$ is a neural network representing a rotation transformation.
 
 The transformation model is trained to predict the next rotation in the sequence.
 
@@ -88,18 +86,18 @@ This task implements a method inspired by Oracle-Preserving Latent Flows.
 Steps:
 
 Train a classifier on latent representations (oracle model)
-y=C(z)
+$y = C(z)$
 
 Train a generator network that produces transformation directions:
 
-z′=z+ϵG(z)
+$z' = z + \epsilon G(z)$
 
 Enforce oracle invariance
-C(z)≈C(z′)
+$C(z) \approx C(z')$
 
 Loss function:
 
-L=Linv+λLnorm
+$L = L_{inv} + \lambda L_{norm}$
 The generator learns directions in latent space that preserve the classifier output.
 
 Outputs:
